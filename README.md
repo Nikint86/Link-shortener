@@ -35,8 +35,10 @@ def shorten_link(token, url):
     response.raise_for_status()
     request_response = response.json()
     return request_response['response']['short_url']
+```
+Сокращает ссылку
 
-
+```
 def count_clicks(token, short_url):
     parsed = urlparse(short_url)
     path = parsed.path.strip('/')
@@ -52,13 +54,18 @@ def count_clicks(token, short_url):
     response.raise_for_status()
     stats = response.json()
     return stats['response']['stats'][0]['views']
+```
+Выводит количество переходов пользователей по ссылке
 
-
+```
 def is_short_link(url):
     parsed_url = urlparse(url)
     return parsed_url.netloc == 'vk.cc'
+```
 
+Проверяет,сокращена ссылка или нет
 
+```
      parser = argparse.ArgumentParser(description='Сокращение ссылок и получение статистики по просмотрам.')
     parser.add_argument('-u', '--url', type=str, required=True,
                         help='Введите ссылку для сокращения или получения статистики.')
@@ -79,7 +86,7 @@ def is_short_link(url):
         print("Ошибка при запросе:", str(e))
 ```
 
-
+Ожидает ссылку,которую надо ввести, в зависимости от ссылки выводит количество просмотров или сокращает ссылку
 
 
 
